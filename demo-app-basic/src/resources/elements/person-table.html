@@ -1,0 +1,20 @@
+<template>
+  <table class="table">
+    <tr>
+      <th>#</th>
+      <th>Jméno</th>
+      <th>Příjmení</th>
+      <th>Email</th>
+    </tr>
+
+    <tr repeat.for="person of value"
+        click.delegate="$parent.select(person)"
+        class="${$parent.selectedPersonId === person._id ? 'active' : ''}">
+      <td class="col-md-1">${$index + 1}</td>
+      <td class="col-md-3">${person.firstname}</td>
+      <td class="col-md-4">${person.lastname}</td>
+      <td class="col-md-4">${person.email}</td>
+    </tr>
+
+  </table>
+</template>

@@ -1,0 +1,16 @@
+<template>
+  <require from="./resources/elements/person-table"></require>
+  <require from="./resources/elements/person-detail"></require>
+  <require from="./resources/elements/person-action"></require>
+
+  <!-- nejsou resene fonty..., lepsi zatim pouzit webpack -->
+  <require from="bootstrap/css/bootstrap.css"></require>
+
+  <div class="container main">
+      <h1 class="page-header">Osoby</h1>
+      <!-- binding - http://aurelia.io/hub.html#/doc/article/aurelia/binding/latest/binding-basics/2 --> 
+      <person-table value.two-way="persons" message.one-way="message"></person-table>
+      <person-action create-enabled.bind="createEnabled" save-enabled.bind="saveEnabled" delete-enabled.bind="deleteEnabled"></person-action>
+      <person-detail if.bind="selectedPerson" value.two-way="selectedPerson"></person-detail>
+  </div>
+</template>

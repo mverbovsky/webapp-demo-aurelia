@@ -1,0 +1,11 @@
+<template>
+  <a class="btn btn-primary ${createEnabled ? '' : 'disabled'}" click.delegate="create()">
+    <span class="glyphicon glyphicon-plus"></span>
+  </a>
+  <a class="btn btn-danger ${deleteEnabled ? '' : 'disabled'}" click.delegate="delete()">
+    <span class="glyphicon glyphicon-minus"></span>
+  </a>
+  <a class="btn btn-success ${saveEnabled ? '' : 'disabled'}" click.delegate="save()">
+    <span>Uložit</span>
+  </a>
+</template>

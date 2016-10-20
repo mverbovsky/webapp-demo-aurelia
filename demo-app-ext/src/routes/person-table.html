@@ -1,0 +1,25 @@
+<template>
+  <h2 class="page-header">${title}</h2>
+  <table class="table table-hover">
+    <tr>
+      <th>#</th>
+      <th>Jméno</th>
+      <th>Příjmení</th>
+      <th>Email</th>
+    </tr>
+    
+    <tr repeat.for="person of persons" click.delegate="$parent.select(person)" class="${$parent.selectedPersonId === person._id ? 'active' : ''}">
+      <td class="col-md-1">${$index + 1}</td>
+      <td class="col-md-3">${person.firstname}</td>
+      <td class="col-md-4">${person.lastname}</td>
+      <td class="col-md-4">${person.email}</td>
+    </tr>
+
+  </table>
+
+  <div class="button-bar">
+    <button class="btn ${createEnabled ? '' : 'disabled'}" click.delegate="create()">Nový</button>
+    <button class="btn ${detailEnabled ? '' : 'disabled'}" click.delegate="detail()">Detail</button>
+    <button class="btn ${deleteEnabled ? '' : 'disabled'}" click.delegate="delete()">Smazat</button>
+  </div>
+</template>

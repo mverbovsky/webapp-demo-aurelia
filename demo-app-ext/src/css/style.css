@@ -1,0 +1,13 @@
+body { 
+    padding-top: 50px; 
+}
+
+.app-fixed-top { 
+    padding-top: 70px; 
+}
+
+ai-dialog-overlay.active {
+    padding-top: 0px;
+    background-color: black;
+    opacity: .5;
+}
