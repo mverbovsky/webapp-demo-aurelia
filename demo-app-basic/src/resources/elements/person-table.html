@@ -9,7 +9,7 @@
 
     <tr repeat.for="person of value"
         click.delegate="$parent.select(person)"
-        class="${$parent.selectedPersonId === person._id ? 'active' : ''}">
+        class="${$parent.selectedPersonId === person.id ? 'active' : ''}">
       <td class="col-md-1">${$index + 1}</td>
       <td class="col-md-3">${person.firstname}</td>
       <td class="col-md-4">${person.lastname}</td>

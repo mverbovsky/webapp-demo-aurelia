@@ -28,7 +28,7 @@ export class PersonTableCustomElement {
 
         logger.debug('message newValue', this.message);
 
-        this.selectedPersonId = person ? person._id : null;
+        this.selectedPersonId = person ? person.id : null;
 
         this.eventAggregator.publish('select-person', person);
         return true;

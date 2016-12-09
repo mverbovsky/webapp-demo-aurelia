@@ -2,7 +2,8 @@ import { ValidationRules } from 'aurelia-validation';
 import * as moment from 'moment';
 
 export enum Gender {
-  Male, Female
+  Male = 0, 
+  Female
 }
 
 export var Genders = [
@@ -11,7 +12,7 @@ export var Genders = [
 ];
 
 export class Person {
-  _id: string;
+  id: string;
   _v: number;
   firstname: string;
   lastname: string;

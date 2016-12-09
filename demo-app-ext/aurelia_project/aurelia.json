@@ -90,6 +90,7 @@
         "name": "vendor-bundle.js",
         "prepend": [
           "node_modules/bluebird/js/browser/bluebird.core.js",
+          "node_modules/jquery/dist/jquery.min.js",
           "scripts/require.js"
         ],
         "dependencies": [
@@ -158,6 +159,7 @@
             "path": "../node_modules/bootstrap-datepicker/dist",
             "main": "js/bootstrap-datepicker.min",
             "deps": [
+              "bootstrap",
               "jquery"
             ],
             "exports": "$",

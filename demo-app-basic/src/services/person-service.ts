@@ -26,14 +26,14 @@ export class PersonService {
     }
 
     save(person: Person): Promise<Person> {
-        if (person && person._id) {
+        if (person && person.id) {
             return this.update(person);
         }
         return this.create(person);
     }
 
     update(person: Person): Promise<Person> {
-        return this.http.fetch(`persons/${person._id}`, {
+        return this.http.fetch(`persons/${person.id}`, {
             method: "PUT",
             body: json(person),
             headers: {
@@ -57,7 +57,7 @@ export class PersonService {
     }
 
     delete(person: Person): Promise<boolean> {
-        return this.http.fetch(`persons/${person._id}`, {
+        return this.http.fetch(`persons/${person.id}`, {
             method: "DELETE"
         }).then(response => response.json())
             .catch(this.handleError);

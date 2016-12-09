@@ -13,7 +13,7 @@ export class BootstrapDatepicker {
 
   attached() {
     let self = this;
-    $(this.element).datepicker(this.dpOptions)
+    ($(this.element) as any).datepicker(this.dpOptions)
       .on('changeDate', e => {
         logger.debug('changeDate', e);
         this.value = (e as any).date;
@@ -24,7 +24,7 @@ export class BootstrapDatepicker {
   }
 
   detached() {
-    $(this.element).datepicker('destroy').off('changeDate');
+    ($(this.element) as any).datepicker('destroy').off('changeDate');
   }
 
   valueChanged(newValue, oldValue) {

@@ -34,6 +34,7 @@ export class PersonDetail {
     activate(params, routeConfig) {
         logger.debug('ID: ' + params.id);
         this.routeConfig = routeConfig;
+        this.routeConfig.addAuthorizeStep(new RoutingActiveStep());
 
         if (params.id) {
             this.loadPerson(params.id);
@@ -133,4 +134,10 @@ export class PersonDetail {
 }
 
 
-
+class RoutingActiveStep {
+  run(navigationInstruction, next) {
+      logger.debug('routing step');
+      return next.cancel();
+    //return next();
+  }
+}

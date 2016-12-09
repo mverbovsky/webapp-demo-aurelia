@@ -3,7 +3,8 @@ import {HttpClient} from 'aurelia-fetch-client';
 import environment from './environment';
 import 'fetch';
 
-const REST_API_URL = 'http://hndocker.oksystem.local:58090/api/';
+const REST_API_URL = 'http://wverbovskym.oksystem.local:3000/api/';
+//const REST_API_URL = 'http://hndocker.oksystem.local:58090/api/';
 const logger = LogManager.getLogger('app');
 
 //Configure Bluebird Promises.

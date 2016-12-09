@@ -87,7 +87,7 @@ export class App {
   setSelectedPerson(person: Person) {
     if (person) {
       this.selectedPerson = person;
-      if (person._id) {
+      if (person.id) {
         this.createEnabled = true;
         this.deleteEnabled = true;
         this.saveEnabled = true;

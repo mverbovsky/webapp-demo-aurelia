@@ -1,6 +1,6 @@
 <template>
 	<label class="radio-inline" repeat.for="gender of genders">
-        <input type="radio" name="optionsRadios" model.bind="gender.type" checked.bind="value">
-        ${gender.name}
+        <input type="radio" name="optionsRadios" value.bind="gender.type" checked.bind="$parent.value">
+        ${gender.name} 
     </label>
 </template>

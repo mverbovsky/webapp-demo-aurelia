@@ -10,7 +10,9 @@ export class App {
   configureRouter(config: RouterConfiguration, router: Router){
     this.router = router;
     config.title = 'Demo App';
-    config.options.pushState = true;
+    config.options.pushState = false;
+    // lze pouzit pouze pokud by se upravil server
+    // config.options.pushState = ;
     config.map([
       { route: ['', 'home'], moduleId: './routes/index', name: 'home' },
       { route: 'persons', moduleId: './routes/person-table', name: 'persons' },

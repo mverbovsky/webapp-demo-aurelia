@@ -7,7 +7,7 @@ export class DateFormatValueConverter {
 
     toView(value, format) {
         logger.debug('toView', value, format);
-        if (value && moment.isDate(value)) {
+        if (value) {
             return moment(value).format(format);
         }
         return value;

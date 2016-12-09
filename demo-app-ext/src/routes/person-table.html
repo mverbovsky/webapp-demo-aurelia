@@ -8,7 +8,7 @@
       <th>Email</th>
     </tr>
     
-    <tr repeat.for="person of persons" click.delegate="$parent.select(person)" class="${$parent.selectedPersonId === person._id ? 'active' : ''}">
+    <tr repeat.for="person of persons" click.delegate="$parent.select(person)" dblclick.trigger="$parent.detail()" class="${$parent.selectedPersonId === person.id ? 'active' : ''}">
       <td class="col-md-1">${$index + 1}</td>
       <td class="col-md-3">${person.firstname}</td>
       <td class="col-md-4">${person.lastname}</td>
@@ -18,8 +18,8 @@
   </table>
 
   <div class="button-bar">
-    <button class="btn ${createEnabled ? '' : 'disabled'}" click.delegate="create()">Nový</button>
-    <button class="btn ${detailEnabled ? '' : 'disabled'}" click.delegate="detail()">Detail</button>
-    <button class="btn ${deleteEnabled ? '' : 'disabled'}" click.delegate="delete()">Smazat</button>
+    <button class="btn ${createEnabled ? '' : 'disabled'}" disabled.bind="!createEnabled" click.delegate="create()">Nový</button>
+    <button class="btn ${detailEnabled ? '' : 'disabled'}" disabled.bind="!detailEnabled" click.delegate="detail()">Detail</button>
+    <button class="btn ${deleteEnabled ? '' : 'disabled'}" disabled.bind="!deleteEnabled" click.delegate="delete()">Smazat</button>
   </div>
 </template>

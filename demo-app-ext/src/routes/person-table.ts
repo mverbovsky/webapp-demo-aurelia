@@ -23,7 +23,7 @@ export class PersonTable {
 
     select(person: Person): boolean {
         logger.debug('select person', person);
-        this.selectedPersonId = person ? person._id : null;
+        this.selectedPersonId = person ? person.id : null;
         return true;
     }
 
@@ -56,7 +56,7 @@ export class PersonTable {
     @computedFrom('selectedPersonId')
     get selectedPerson(): Person {
         return this.persons.find((value, index) => {
-            return value._id === this.selectedPersonId;
+            return value.id === this.selectedPersonId;
         });
     }
 

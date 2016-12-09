@@ -51,4 +51,3 @@ describe('the App module', () => {
     expect(sut.router.routes).toContain({ route: ['persons/:id','persons/new'],  moduleId: './routes/person-detail', name:'personDetail' });
   });
 });
-
