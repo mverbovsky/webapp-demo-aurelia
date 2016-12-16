@@ -1,7 +1,7 @@
 import { autoinject, computedFrom, LogManager } from 'aurelia-framework';
-import { Router, RouterConfiguration } from 'aurelia-router';
+import { Router, RouterConfiguration, RoutableComponentCanDeactivate } from 'aurelia-router';
 import { ValidationControllerFactory, ValidationController, validateTrigger, ValidationRules } from 'aurelia-validation';
-import { DialogService } from 'aurelia-dialog';
+import { DialogService, DialogResult } from 'aurelia-dialog';
 
 import { Person, PersonValidationRules } from '../model/person';
 import { PersonService } from '../services/person-service';
@@ -13,7 +13,7 @@ import * as _ from 'lodash';
 const logger = LogManager.getLogger('person-detail');
 
 @autoinject
-export class PersonDetail {
+export class PersonDetail implements RoutableComponentCanDeactivate {
 
     person: Person;
     oldPerson: Person;
@@ -34,7 +34,6 @@ export class PersonDetail {
     activate(params, routeConfig) {
         logger.debug('ID: ' + params.id);
         this.routeConfig = routeConfig;
-        this.routeConfig.addAuthorizeStep(new RoutingActiveStep());
 
         if (params.id) {
             this.loadPerson(params.id);
@@ -45,19 +44,7 @@ export class PersonDetail {
 
     cancel() {
         logger.debug('cancel', this.person);
-        if (this.changed()) {
-            this.dialogService.open({ viewModel: MessageDialog, model: 'Provedené změny nebudou uloženy. Chcete pokračovat?' }).then(response => {
-                if (!response.wasCancelled) {
-                    logger.debug('ano');
-                    this.router.navigate('persons');
-                } else {
-                    logger.debug('ne');
-                }
-                logger.debug(response.output);
-            });
-        } else {
-            this.router.navigate('persons');
-        }
+        this.router.navigate('persons');
     }
 
     save() {
@@ -82,7 +69,7 @@ export class PersonDetail {
     }
 
 
-    private changed(): boolean {
+    changed(): boolean {
         // https://lodash.com/
         let equal = _.isEqualWith(this.person, this.oldPerson,
             (value, other) => {
@@ -131,13 +118,25 @@ export class PersonDetail {
         this.routeConfig.navModel.setTitle('Nová osoba');
     }
 
+    canDeactivate(): boolean | Promise<boolean> {
+        if (this.changed()) {
+            let promise = new Promise<boolean>((resolve) => {
+            this.dialogService.open({ viewModel: MessageDialog, model: 'Provedené změny nebudou uloženy. Chcete pokračovat?' }).then(
+                response => {
+                    logger.debug(response.output);
+                    if (!response.wasCancelled) {
+                        logger.debug('ano');
+                        resolve(true);
+                    } else {
+                        logger.debug('ne');
+                        resolve(false);
+                    }
+                });
+            });
+            return promise;
+        }
+        return true;
+    }
+
 }
 
-
-class RoutingActiveStep {
-  run(navigationInstruction, next) {
-      logger.debug('routing step');
-      return next.cancel();
-    //return next();
-  }
-}
