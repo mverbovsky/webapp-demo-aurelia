@@ -3,8 +3,8 @@ import {HttpClient} from 'aurelia-fetch-client';
 import environment from './environment';
 import 'fetch';
 
-var REST_API_URL = 'http://hndocker.oksystem.local:58090/api/';
-var logger = LogManager.getLogger('app');
+const REST_API_URL = 'http://hndocker.oksystem.local:58090/api/';
+const logger = LogManager.getLogger('app');
 
 //Configure Bluebird Promises.
 //Note: You may want to use environment-specific configuration.
@@ -17,7 +17,7 @@ var logger = LogManager.getLogger('app');
 export function configure(aurelia: Aurelia) {
   aurelia.use
     .standardConfiguration()
-    .feature('resources')
+    .feature('resources');
 
   if (environment.debug) {
     aurelia.use.developmentLogging();
